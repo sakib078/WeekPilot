@@ -33,7 +33,7 @@ const PLAN_SCHEMA: Schema = {
     today_focus_items: {
       type: Type.ARRAY,
       items: { type: Type.STRING },
-      description: "List of 3-5 top priority task names for Today."
+      description: "List of 3-5 top priority task names for Today's Flight Plan."
     },
     due_today_items: {
       type: Type.ARRAY,
@@ -58,7 +58,7 @@ const PLAN_SCHEMA: Schema = {
     },
     today_focus_markdown: {
         type: Type.STRING, 
-        description: "Markdown formatted text for the 'Today Focus' section. Prioritized items and time blocks."
+        description: "Markdown formatted text for the 'Today's Flight Plan' section. Prioritized items and time blocks."
     },
     week_schedule_markdown: { 
         type: Type.STRING, 
@@ -95,7 +95,7 @@ export const generateWeeklyPlan = async (
     const fileParts = await Promise.all(files.map(f => fileToGenerativePart(f.file)));
     
     const prompt = `
-      You are Admin-Killer, a calm executive assistant.
+      You are WeekPilot, a calm weekly copilot.
       
       CONTEXT:
       Role: ${profile.role}
@@ -107,7 +107,7 @@ export const generateWeeklyPlan = async (
       TASK:
       1. Analyze files and notes. Extract tasks, deadlines, and meetings.
       2. Group into projects, infer dependencies, estimate effort.
-      3. Create a realistic weekly schedule fitting the working hours.
+      3. Create a realistic flight plan (schedule) fitting the working hours.
       4. Prioritize TODAY heavily.
 
       OUTPUT FORMAT:
@@ -117,7 +117,7 @@ export const generateWeeklyPlan = async (
       
       Formatting:
       - Use Markdown for the text fields (headers, lists, bolding).
-      - Be concise and clear.
+      - Be concise, clear, and encouraging. Use light aviation terms occasionally if fitting (e.g., "On the radar").
     `;
 
     console.log("Calling Gemini API with model:", MODEL_PRO);
@@ -156,7 +156,7 @@ export const generateWeeklyPlan = async (
         due_today_items: parsed.due_today_items || [],
         week_glance: parsed.week_glance || [],
         tasks_deadlines_markdown: parsed.tasks_deadlines_markdown || "No tasks.",
-        today_focus_markdown: parsed.today_focus_markdown || "No today focus.",
+        today_focus_markdown: parsed.today_focus_markdown || "No flight plan for today.",
         week_schedule_markdown: parsed.week_schedule_markdown || "No schedule.",
         action_generators_markdown: parsed.action_generators_markdown || "No actions.",
         summary: parsed.summary || "Plan ready."
@@ -176,7 +176,7 @@ export const refreshTodayPlan = async (
     const fileParts = await Promise.all(files.map(f => fileToGenerativePart(f.file)));
     
     const prompt = `
-      You are Admin-Killer. 
+      You are WeekPilot. 
       CONTEXT:
       Role: ${profile.role}
       Timezone: ${profile.timezone}
@@ -184,7 +184,7 @@ export const refreshTodayPlan = async (
       User Notes: ${textInput}
       
       TASK:
-      Refresh ONLY the "Today Focus" plan.
+      Refresh ONLY the "Today's Flight Plan".
       Output pure Markdown for the Today section.
       
       OUTPUT:

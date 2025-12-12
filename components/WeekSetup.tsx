@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, X, FileText, Image as ImageIcon, Sparkles, Loader2, ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import { Upload, X, FileText, Image as ImageIcon, Sparkles, Loader2, ChevronDown, ChevronUp, Plus, Compass } from 'lucide-react';
 import { FileInput, Role, UserProfile } from '../types';
 import AudioRecorder from './AudioRecorder';
 
@@ -52,29 +52,30 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
     <div className="space-y-6">
       
       {/* Main Input Card */}
-      <div className="bg-white p-1 rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+      <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         
         {/* Header */}
-        <div className="px-6 py-4 border-b border-stone-100 bg-stone-50/30 flex items-center justify-between">
-             <h2 className="text-lg font-bold text-stone-800 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-500"/>
-                Week Context
+        <div className="flex items-center justify-between mb-5">
+             <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <Compass className="w-5 h-5 text-indigo-600"/>
+                WeekPilot Setup
              </h2>
-             <span className="text-xs font-medium text-stone-400">Files & Notes</span>
+             <span className="text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-full">Inputs</span>
         </div>
 
-        <div className="p-6 space-y-8">
+        {/* Grid Layout for Inputs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* File Upload Area */}
-            <div className="group">
-                <label className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3 ml-1">
+            <div className="flex flex-col">
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
                     1. Upload Inputs
                 </label>
                 
                 <div 
                     onClick={() => fileInputRef.current?.click()}
                     className={`
-                        relative border-2 border-dashed rounded-xl p-4 transition-all cursor-pointer min-h-[120px]
-                        ${files.length > 0 ? 'border-stone-200 bg-white' : 'border-stone-200 hover:border-stone-300 hover:bg-stone-50/50'}
+                        flex-1 relative border-2 border-dashed rounded-xl transition-all cursor-pointer min-h-[160px] flex flex-col justify-center
+                        ${files.length > 0 ? 'border-slate-200 bg-slate-50 p-3' : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-50 p-6'}
                     `}
                 >
                     <input 
@@ -87,41 +88,38 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
                     />
                     
                     {files.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-4 h-full">
-                             <div className="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                                <Upload className="h-5 w-5 text-stone-400" />
+                        <div className="flex flex-col items-center justify-center text-center">
+                            <div className="w-8 h-8 bg-indigo-50 rounded-full flex items-center justify-center mb-2">
+                                <Upload className="h-4 w-4 text-indigo-500" />
                             </div>
-                            <p className="text-sm font-medium text-stone-600">Drop screenshots, PDFs, or photos</p>
-                            <p className="text-xs text-stone-400 mt-1">We'll extract tasks & deadlines</p>
+                            <p className="text-sm font-medium text-slate-600">Drop files here</p>
+                            <p className="text-xs text-slate-400">Screenshots, PDFs, Photos</p>
                         </div>
                     ) : (
-                         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                         <div className="grid grid-cols-3 gap-2">
                             {/* Add More Button */}
-                            <div className="flex flex-col items-center justify-center aspect-square border border-stone-200 rounded-lg bg-stone-50 hover:bg-stone-100 text-stone-400 transition-colors">
-                                 <Plus className="w-6 h-6 mb-1"/>
+                            <div className="flex flex-col items-center justify-center aspect-square border border-slate-200 rounded-lg bg-white hover:bg-slate-50 text-slate-400 transition-colors">
+                                 <Plus className="w-5 h-5 mb-0.5"/>
                                  <span className="text-[10px] font-medium">Add</span>
                             </div>
 
                             {/* File Thumbnails */}
                             {files.map((f, i) => (
-                                <div key={i} className="relative group/file aspect-square rounded-lg border border-stone-200 overflow-hidden bg-white flex items-center justify-center shadow-sm">
+                                <div key={i} className="relative group/file aspect-square rounded-lg border border-slate-200 overflow-hidden bg-white flex items-center justify-center shadow-sm">
                                     {f.mimeType.startsWith('image/') ? (
                                         <img src={f.previewUrl} alt="preview" className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="flex flex-col items-center text-red-500">
-                                            <FileText className="w-8 h-8 mb-1" />
-                                            <span className="text-[10px] uppercase font-bold text-stone-400">PDF</span>
+                                            <FileText className="w-6 h-6 mb-0.5" />
+                                            <span className="text-[9px] uppercase font-bold text-slate-400">PDF</span>
                                         </div>
                                     )}
                                     <button 
                                         onClick={(e) => { e.stopPropagation(); removeFile(i); }}
-                                        className="absolute top-1 right-1 p-1 bg-white/90 rounded-full text-stone-500 hover:text-red-500 shadow-sm opacity-0 group-hover/file:opacity-100 transition-opacity"
+                                        className="absolute top-0.5 right-0.5 p-0.5 bg-white/90 rounded-full text-slate-500 hover:text-red-500 shadow-sm opacity-0 group-hover/file:opacity-100 transition-opacity"
                                     >
                                         <X className="w-3 h-3" />
                                     </button>
-                                    <div className="absolute bottom-0 left-0 right-0 bg-white/95 px-2 py-1 text-[9px] truncate text-stone-600 text-center font-medium">
-                                        {f.file.name}
-                                    </div>
                                 </div>
                             ))}
                          </div>
@@ -130,14 +128,14 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
             </div>
 
             {/* Description Text Area */}
-            <div>
-                 <label className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-3 ml-1">
+            <div className="flex flex-col">
+                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
                     2. Describe your week
                 </label>
-                <div className="relative">
+                <div className="relative flex-1">
                     <textarea
-                        className="w-full text-sm rounded-xl border-stone-200 bg-stone-50 p-4 pr-12 focus:ring-2 focus:ring-stone-400 focus:border-stone-400 min-h-[140px] resize-none transition-shadow placeholder:text-stone-400/80 leading-relaxed"
-                        placeholder="Type your brain dump here...&#10;• 3 assignments due Friday&#10;• Sprint review Thursday at 2pm&#10;• Need to finish feature X"
+                        className="w-full h-full min-h-[160px] text-sm rounded-xl border-slate-200 bg-slate-50 p-4 pr-12 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none transition-shadow placeholder:text-slate-400/80 leading-relaxed"
+                        placeholder="Type your brain dump here...&#10;• 3 assignments due Friday&#10;• Sprint review Thursday at 2pm"
                         value={textInput}
                         onChange={(e) => setTextInput(e.target.value)}
                     />
@@ -150,22 +148,22 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
       </div>
       
       {/* Collapsible Profile */}
-      <div className="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <button 
             onClick={() => setIsProfileOpen(!isProfileOpen)}
-            className="w-full flex items-center justify-between p-5 text-left hover:bg-stone-50 transition-colors"
+            className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-50 transition-colors"
         >
-             <span className="font-bold text-stone-800 text-sm">Profile & constraints</span>
-             {isProfileOpen ? <ChevronUp className="w-4 h-4 text-stone-400" /> : <ChevronDown className="w-4 h-4 text-stone-400" />}
+             <span className="font-bold text-slate-800 text-sm">Profile & constraints</span>
+             {isProfileOpen ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
         </button>
         
         {isProfileOpen && (
-            <div className="p-5 pt-0 space-y-4 border-t border-stone-100">
+            <div className="p-5 pt-0 space-y-4 border-t border-slate-100">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
                     <div>
-                        <label className="block text-xs font-medium text-stone-500 mb-1.5">Role</label>
+                        <label className="block text-xs font-medium text-slate-500 mb-1.5">Role</label>
                         <select 
-                            className="w-full text-sm rounded-lg border-stone-200 bg-stone-50 p-2.5 focus:ring-stone-400 focus:border-stone-400"
+                            className="w-full text-sm rounded-lg border-slate-200 bg-slate-50 p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
                             value={profile.role}
                             onChange={(e) => setProfile({ ...profile, role: e.target.value as Role })}
                         >
@@ -176,10 +174,10 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
                     </div>
                     
                     <div>
-                        <label className="block text-xs font-medium text-stone-500 mb-1.5">Time Zone</label>
+                        <label className="block text-xs font-medium text-slate-500 mb-1.5">Time Zone</label>
                         <input 
                             type="text" 
-                            className="w-full text-sm rounded-lg border-stone-200 bg-stone-50 p-2.5 focus:ring-stone-400 focus:border-stone-400"
+                            className="w-full text-sm rounded-lg border-slate-200 bg-slate-50 p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
                             value={profile.timezone}
                             placeholder="e.g. EST"
                             onChange={(e) => setProfile({ ...profile, timezone: e.target.value })}
@@ -188,9 +186,9 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
                 </div>
 
                 <div>
-                    <label className="block text-xs font-medium text-stone-500 mb-1.5">Working Hours & Fixed Events</label>
+                    <label className="block text-xs font-medium text-slate-500 mb-1.5">Working Hours & Fixed Events</label>
                     <textarea 
-                        className="w-full text-sm rounded-lg border-stone-200 bg-stone-50 p-3 focus:ring-stone-400 focus:border-stone-400 min-h-[80px]"
+                        className="w-full text-sm rounded-lg border-slate-200 bg-slate-50 p-3 focus:ring-indigo-500 focus:border-indigo-500 min-h-[80px]"
                         value={profile.workingHours}
                         placeholder="e.g. 9-5 Mon-Fri, Standup daily at 10am"
                         onChange={(e) => setProfile({ ...profile, workingHours: e.target.value, hardEvents: e.target.value })}
@@ -206,22 +204,23 @@ const WeekSetup: React.FC<WeekSetupProps> = ({
             disabled={isLoading || (files.length === 0 && !textInput)}
             className={`w-full py-4 rounded-xl text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform active:scale-[0.98]
             ${isLoading || (files.length === 0 && !textInput)
-                ? 'bg-stone-300 cursor-not-allowed shadow-none' 
-                : 'bg-stone-800 hover:bg-stone-900'
+                ? 'bg-slate-300 cursor-not-allowed shadow-none' 
+                : 'bg-indigo-600 hover:bg-indigo-700'
             }`}
         >
             {isLoading ? (
                 <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Thinking deeply...
+                    Charting course...
                 </>
             ) : (
                 <>
-                    <Sparkles className="w-5 h-5 text-amber-300" />
-                    Generate my week
+                    <Sparkles className="w-5 h-5 text-indigo-200" />
+                    Generate Flight Plan
                 </>
             )}
         </button>
+        <p className="text-center text-xs text-slate-400">WeekPilot will analyze all files and draft your plan.</p>
     </div>
   );
 };

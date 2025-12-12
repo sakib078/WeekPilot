@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin-Killer</title>
+    <title>WeekPilot</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
       
       :root {
-        --bg-warm: #fdfbf7; /* Warm stone-50/off-white */
-        --text-primary: #44403c; /* Stone-700 */
-        --text-secondary: #78716c; /* Stone-500 */
-        --accent: #f59e0b; /* Amber-500 for subtle highlights */
+        --bg-warm: #f8fafc; /* Slate-50 - Cool, clean background */
+        --text-primary: #1e293b; /* Slate-800 */
+        --text-secondary: #64748b; /* Slate-500 */
+        --accent: #4f46e5; /* Indigo-600 - WeekPilot Blue */
+        --accent-secondary: #0d9488; /* Teal-600 - Secondary */
       }
 
       body {
@@ -31,26 +32,26 @@
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #d6d3d1;
+        background: #cbd5e1;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #a8a29e;
+        background: #94a3b8;
       }
 
-      /* Markdown Styles - Warmer tones */
-      .markdown-body h1 { font-size: 1.5em; font-weight: 700; margin-bottom: 0.5em; margin-top: 1em; color: #292524; }
-      .markdown-body h2 { font-size: 1.25em; font-weight: 600; margin-bottom: 0.5em; margin-top: 1em; color: #44403c; border-bottom: 1px solid #e7e5e4; padding-bottom: 0.3em; }
-      .markdown-body h3 { font-size: 1.1em; font-weight: 600; margin-bottom: 0.5em; margin-top: 1em; color: #57534e; }
-      .markdown-body p { margin-bottom: 1em; line-height: 1.6; color: #57534e; }
-      .markdown-body ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; color: #57534e; }
-      .markdown-body ol { list-style-type: decimal; padding-left: 1.5em; margin-bottom: 1em; color: #57534e; }
+      /* Markdown Styles - Clean Slate/Indigo tones */
+      .markdown-body h1 { font-size: 1.5em; font-weight: 700; margin-bottom: 0.5em; margin-top: 1em; color: #1e293b; }
+      .markdown-body h2 { font-size: 1.25em; font-weight: 600; margin-bottom: 0.5em; margin-top: 1em; color: #334155; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3em; }
+      .markdown-body h3 { font-size: 1.1em; font-weight: 600; margin-bottom: 0.5em; margin-top: 1em; color: #475569; }
+      .markdown-body p { margin-bottom: 1em; line-height: 1.6; color: #475569; }
+      .markdown-body ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; color: #475569; }
+      .markdown-body ol { list-style-type: decimal; padding-left: 1.5em; margin-bottom: 1em; color: #475569; }
       .markdown-body li { margin-bottom: 0.25em; }
-      .markdown-body strong { font-weight: 600; color: #1c1917; }
-      .markdown-body em { font-style: italic; color: #78716c; }
-      .markdown-body blockquote { border-left: 4px solid #d6d3d1; padding-left: 1em; color: #78716c; margin-bottom: 1em; font-style: italic; }
-      .markdown-body code { background-color: #f5f5f4; padding: 0.2em 0.4em; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #292524; }
-      .markdown-body pre { background-color: #f5f5f4; padding: 1em; border-radius: 8px; overflow-x: auto; margin-bottom: 1em; border: 1px solid #e7e5e4; }
+      .markdown-body strong { font-weight: 600; color: #0f172a; }
+      .markdown-body em { font-style: italic; color: #64748b; }
+      .markdown-body blockquote { border-left: 4px solid #cbd5e1; padding-left: 1em; color: #64748b; margin-bottom: 1em; font-style: italic; }
+      .markdown-body code { background-color: #f1f5f9; padding: 0.2em 0.4em; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #334155; }
+      .markdown-body pre { background-color: #f1f5f9; padding: 1em; border-radius: 8px; overflow-x: auto; margin-bottom: 1em; border: 1px solid #e2e8f0; }
     </style>
   <script type="importmap">
 {

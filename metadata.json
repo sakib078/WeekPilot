@@ -1,6 +1,6 @@
 {
-  "name": "Admin-Killer",
-  "description": "Turn chaos into a structured weekly plan using Gemini 3 Pro. Organizes screenshots, PDFs, and notes into actionable tasks.",
+  "name": "WeekPilot",
+  "description": "Your weekly copilot. Turn digital chaos into a guided week with screenshots, PDFs, and notes.",
   "requestFramePermissions": [
     "microphone"
   ]

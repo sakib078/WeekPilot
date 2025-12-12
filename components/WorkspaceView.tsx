@@ -4,7 +4,7 @@ import WeekSetup from './WeekSetup';
 import TaskPanel from './TaskPanel';
 import WeeklyPlanPanel from './WeeklyPlanPanel';
 import ActionPanel from './ActionPanel';
-import { ListTodo, Calendar, Zap, Plus, ArrowLeft } from 'lucide-react';
+import { ListTodo, Calendar, Zap, Plus, ArrowLeft, Compass } from 'lucide-react';
 
 interface WorkspaceViewProps {
   onGenerate: (files: FileInput[], text: string, profile: UserProfile) => void;
@@ -33,7 +33,7 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
     if (quickTask.trim()) {
         onAddQuickTask(quickTask.trim());
         setQuickTask('');
-        alert("Task added to context! It will appear in the plan the next time you click 'Generate my week'.");
+        alert("Task added to context! It will appear in the plan the next time you click 'Generate Flight Plan'.");
     }
   };
 
@@ -42,7 +42,7 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
        
        {/* Mobile Header / Back Link */}
        <div className="lg:hidden col-span-1">
-          <button onClick={onBackToToday} className="flex items-center text-stone-500 font-medium">
+          <button onClick={onBackToToday} className="flex items-center text-slate-500 font-medium hover:text-indigo-600 transition-colors">
              <ArrowLeft className="w-4 h-4 mr-1" /> Back to Today
           </button>
        </div>
@@ -55,13 +55,13 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
        {/* Right Column: Results */}
        <div className="lg:col-span-7 xl:col-span-8 flex flex-col h-full min-h-[600px]">
           {data ? (
-              <div className="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden flex flex-col flex-1">
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col flex-1">
                  {/* Tab Header */}
-                 <div className="flex border-b border-stone-100 bg-stone-50/50 p-1">
+                 <div className="flex border-b border-slate-100 bg-slate-50/50 p-1">
                     <button 
                         onClick={() => setActiveTab('tasks')}
                         className={`flex-1 py-2.5 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition-all
-                        ${activeTab === 'tasks' ? 'bg-white text-stone-800 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
+                        ${activeTab === 'tasks' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <ListTodo className="w-4 h-4" />
                         Tasks
@@ -69,7 +69,7 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
                     <button 
                         onClick={() => setActiveTab('plan')}
                         className={`flex-1 py-2.5 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition-all
-                        ${activeTab === 'plan' ? 'bg-white text-stone-800 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
+                        ${activeTab === 'plan' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <Calendar className="w-4 h-4" />
                         Plan
@@ -77,7 +77,7 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
                     <button 
                         onClick={() => setActiveTab('actions')}
                         className={`flex-1 py-2.5 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition-all
-                        ${activeTab === 'actions' ? 'bg-white text-stone-800 shadow-sm' : 'text-stone-500 hover:bg-stone-100'}`}
+                        ${activeTab === 'actions' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:bg-slate-100'}`}
                     >
                         <Zap className="w-4 h-4" />
                         Actions
@@ -97,19 +97,19 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
                  </div>
 
                  {/* Fine-tune Section */}
-                 <div className="border-t border-stone-100 p-4 bg-stone-50">
-                    <h4 className="text-xs font-bold text-stone-500 uppercase tracking-wide mb-2">Fine-tune next run</h4>
+                 <div className="border-t border-slate-100 p-4 bg-slate-50">
+                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Fine-tune next run</h4>
                     <form onSubmit={handleAddQuickTask} className="flex gap-2">
                         <input 
                             type="text" 
-                            className="flex-1 text-sm rounded-lg border-stone-200 p-2 focus:ring-stone-400 focus:border-stone-400"
+                            className="flex-1 text-sm rounded-lg border-slate-200 p-2 focus:ring-indigo-500 focus:border-indigo-500"
                             placeholder="Add a quick task (e.g. 'Call Mom tomorrow')"
                             value={quickTask}
                             onChange={(e) => setQuickTask(e.target.value)}
                         />
                         <button 
                             type="submit"
-                            className="bg-white border border-stone-200 text-stone-600 hover:bg-stone-100 p-2 rounded-lg transition-colors"
+                            className="bg-white border border-slate-200 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 p-2 rounded-lg transition-colors"
                         >
                             <Plus className="w-5 h-5" />
                         </button>
@@ -117,12 +117,12 @@ const WorkspaceView: React.FC<WorkspaceViewProps> = ({
                  </div>
               </div>
           ) : (
-            <div className="h-full flex flex-col items-center justify-center text-center p-12 bg-white rounded-2xl border border-stone-200 border-dashed">
-                <div className="w-20 h-20 bg-stone-50 rounded-full flex items-center justify-center mb-6">
-                    <Calendar className="w-10 h-10 text-stone-300" />
+            <div className="h-full flex flex-col items-center justify-center text-center p-12 bg-white rounded-2xl border border-slate-200 border-dashed">
+                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+                    <Compass className="w-10 h-10 text-indigo-300" />
                 </div>
-                <h3 className="text-xl font-bold text-stone-700 mb-2">Your week is waiting</h3>
-                <p className="max-w-md text-stone-500">Upload your mess on the left, and we'll turn it into a clear, actionable plan right here.</p>
+                <h3 className="text-xl font-bold text-slate-700 mb-2">WeekPilot Workspace</h3>
+                <p className="max-w-md text-slate-500">Upload your week once and let your copilot chart the course.</p>
             </div>
           )}
        </div>
