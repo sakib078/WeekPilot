@@ -4,6 +4,7 @@ import { generateWeeklyPlan, refreshTodayPlan, speakText } from './services/gemi
 import TodayView from './components/TodayView';
 import WorkspaceView from './components/WorkspaceView';
 import { Layout, Calendar, Compass } from 'lucide-react';
+import Logo from './components/Logo';
 
 const App: React.FC = () => {
   const [view, setView] = useState<'today' | 'workspace'>('today');
@@ -60,11 +61,7 @@ const App: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('today')}>
-                <img 
-                    src="logo.png" 
-                    alt="WeekPilot Logo" 
-                    className="w-10 h-10 object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
-                />
+                <Logo className="w-10 h-10 group-hover:scale-105 transition-transform" />
                 <span className="font-bold text-xl text-slate-800 hidden sm:block tracking-tight">WeekPilot</span>
             </div>
 
