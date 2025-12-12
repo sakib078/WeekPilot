@@ -12,33 +12,40 @@ const Logo: React.FC<LogoProps> = ({ className = "w-10 h-10" }) => {
       xmlns="http://www.w3.org/2000/svg" 
       className={className}
     >
-      {/* Circle Background (Beige/Gold tone) */}
-      <circle cx="50" cy="50" r="48" stroke="#D4C5A9" strokeWidth="3" fill="#FBF8F3" />
+      {/* Circle Background */}
+      <circle 
+        cx="50" 
+        cy="50" 
+        r="45" 
+        stroke="#D4C5A9" 
+        strokeWidth="3" 
+        fill="#FBF8F3" 
+      />
       
-      {/* W with Arrow Path */}
-      {/* Abstract W shape that transitions into an arrow pointing top-right */}
+      {/* W Arrow Shape - Clean Geometric Path */}
+      {/* 
+         Standard W coordinates: 
+         Start: 26, 42
+         Bottom-Left: 36, 68
+         Middle-Top: 50, 40
+         Bottom-Right: 64, 68
+         End (Arrow Tip): 80, 26
+      */}
       <path 
-        d="M28 48 L40 68 L52 48 C52 48 56 40 64 40 C72 40 70 28 82 20 M82 20 L72 22 M82 20 L78 30" 
+        d="M26 42 L36 68 L50 40 L64 68 L80 26" 
         stroke="#2E3A8C" 
-        strokeWidth="10" 
+        strokeWidth="8" 
         strokeLinecap="round" 
         strokeLinejoin="round" 
-        fill="none"
       />
-      {/* Arrowhead fix to ensure it looks sharp */}
+      
+      {/* Arrow Head - 90 degree angle pointing North-East */}
       <path 
-        d="M82 20 L68 28 L82 36 Z" 
-        fill="#2E3A8C"
+        d="M66 26 L80 26 L80 40" 
         stroke="#2E3A8C" 
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      {/* Left stroke of W */}
-      <path 
-        d="M20 40 L30 68" 
-        stroke="#2E3A8C" 
-        strokeWidth="10" 
+        strokeWidth="8" 
         strokeLinecap="round" 
+        strokeLinejoin="round" 
       />
     </svg>
   );
