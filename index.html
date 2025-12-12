@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin-Killer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      :root {
+        --bg-warm: #fdfbf7; /* Warm stone-50/off-white */
+        --text-primary: #44403c; /* Stone-700 */
+        --text-secondary: #78716c; /* Stone-500 */
+        --accent: #f59e0b; /* Amber-500 for subtle highlights */
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-warm);
+        color: var(--text-primary);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Custom scrollbar for cleaner UI */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d6d3d1;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a8a29e;
+      }
+
+      /* Markdown Styles - Warmer tones */
+      .markdown-body h1 { font-size: 1.5em; font-weight: 700; margin-bottom: 0.5em; margin-top: 1em; color: #292524; }
+      .markdown-body h2 { font-size: 1.25em; font-weight: 600; margin-bottom: 0.5em; margin-top: 1em; color: #44403c; border-bottom: 1px solid #e7e5e4; padding-bottom: 0.3em; }
+      .markdown-body h3 { font-size: 1.1em; font-weight: 600; margin-bottom: 0.5em; margin-top: 1em; color: #57534e; }
+      .markdown-body p { margin-bottom: 1em; line-height: 1.6; color: #57534e; }
+      .markdown-body ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; color: #57534e; }
+      .markdown-body ol { list-style-type: decimal; padding-left: 1.5em; margin-bottom: 1em; color: #57534e; }
+      .markdown-body li { margin-bottom: 0.25em; }
+      .markdown-body strong { font-weight: 600; color: #1c1917; }
+      .markdown-body em { font-style: italic; color: #78716c; }
+      .markdown-body blockquote { border-left: 4px solid #d6d3d1; padding-left: 1em; color: #78716c; margin-bottom: 1em; font-style: italic; }
+      .markdown-body code { background-color: #f5f5f4; padding: 0.2em 0.4em; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #292524; }
+      .markdown-body pre { background-color: #f5f5f4; padding: 1em; border-radius: 8px; overflow-x: auto; margin-bottom: 1em; border: 1px solid #e7e5e4; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "recharts": "https://esm.sh/recharts@^3.5.1",
+    "react-markdown": "https://esm.sh/react-markdown@9.0.1?bundle",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
